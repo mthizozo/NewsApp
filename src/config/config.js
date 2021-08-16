@@ -1,9 +1,6 @@
-import {
-    API_URL,
-    APP_ENV,
-  } from '@env';
+
   
   
-  export const API_URL_ = API_URL;
-  export const APP_ENV_ = APP_ENV;
+  export const API_URL_ = "http://localhost:8080";
+  export const APP_ENV_ = "SIT";
   

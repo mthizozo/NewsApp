@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React , {Component} from 'react';
  import {
   SafeAreaView,
   ScrollView,
@@ -31,15 +31,13 @@ import 'react-native-gesture-handler';
 import store from './redux/store';
 const Stack = createNativeStackNavigator();
 
+import Home from './Views/Home'
+import Article from './Views/Article'
 
 export default class App extends Component  {
 
   render() {
-    const isDarkMode = useColorScheme() === 'dark';
-
-    const backgroundStyle = {
-      backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
+ 
   return (
     <Provider store={store}>
     <NavigationContainer>
@@ -109,4 +107,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;

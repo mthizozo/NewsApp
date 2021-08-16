@@ -38,7 +38,7 @@ export const formUpdate = (prop, value) => {
     };
   };
 
-  export const getHeadlines = ({jwttoken, country}) => {
+  export const getHeadlines = ({ country}) => {
     return async (dispatch) => {
  
       axios(`${API_URL_}/auth/getHeadlines`, {
@@ -48,8 +48,7 @@ export const formUpdate = (prop, value) => {
           }),
         headers: {
           'Content-Type': 'application/json',
-          accept: 'application/json',  
-          'Authorization-jwt': jwttoken,
+          accept: 'application/json',
         },
       })
         .then((response) => {

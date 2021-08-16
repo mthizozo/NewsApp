@@ -2,9 +2,7 @@ import React from 'react';
 import {Text, View, TouchableHighlight, Image} from 'react-native';
 import moment from "moment";
 
-import {Actions} from 'react-native-router-flux'
-
-import styles from "./styles"
+import styles from "../styles/style"
 
 const Item = ({article}) => {
     const {title, url, source, publishedAt} = article;
@@ -12,7 +10,10 @@ const Item = ({article}) => {
         <TouchableHighlight
             style={styles.container}
             underlayColor={"transparent"}
-            onPress={() => Actions.Article({article, title})}>
+            onPress={() =>    this.props.navigation.navigate('OTP', {
+                article: article,
+                title: title,
+              })}>
             <View style={[styles.wrapper]}>
 
                 {

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import Item from "../components/Item"
 
-import {actions as home} from "../actions/index"
+import {actions as home} from "../actions"
 const { getNewsHeadlines } = home;
 
 class Home extends React.Component {
