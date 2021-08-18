@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { Dimensions, Platform } from 'react-native';
 import { moderateScale as normalize } from 'react-native-size-matters';
+import { textAlign } from 'styled-system';
 
 const color = {
     black: 'rgba(0,0,0,.84)',
@@ -79,7 +80,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         color: '#000',
         backgroundColor: '#fff',
-        padding: 15
+        padding: 15,
+        alignContent: "center"
       },
     title:{
         fontSize: fontSize.regular,

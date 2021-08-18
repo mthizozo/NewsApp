@@ -6,7 +6,8 @@ import { WebView } from 'react-native-webview';
 
 export default function Article(props) {
     const {navigation} = props;
-    const article = navigation.getParam("article");
+
+    const article =  props.route.params.article;
 
     //==================================================================================================
 

@@ -35,6 +35,9 @@ componentWillUnmount(){
         this.setState({refreshing});
 
         let c = this.props.country;
+        if(c == ''){
+            c = "us"
+        } 
        this.props.getNewsHeadlines({c}).finally(() => this.setState({refreshing: false}));;
     }
     setCountry = (c) => {
@@ -46,7 +49,7 @@ componentWillUnmount(){
          
     }
     renderItem = ({item, index}) => {
-        return <Item article={item}/>
+        return <Item article={item} navigation={this.props.navigation}/>
     }
     componentDidUpdate(prevProps, prevState) {
          
@@ -61,9 +64,9 @@ componentWillUnmount(){
  
     render() {
         const {articles, isFetching, hasError,errorMsg, country} = this.props;
-        console.log(this.state.refreshing)
-        if (isFetching) return <ActivityIndicator/>
-        else if (this.state.refreshing) return <ActivityIndicator/>
+        console.log("is fetching" , isFetching)
+         if (isFetching) return <ActivityIndicator/>
+        
         else {
             return (
        <SafeAreaView style={styles.listcontainer}>  

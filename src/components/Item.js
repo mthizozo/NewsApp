@@ -6,7 +6,8 @@ import { NavigationContainer, useNavigationContainerRef } from '@react-navigatio
 
 import styles from "../styles"
 
-const Item = ({article}) => {
+ 
+const Item = ({article, navigation}) => {
     const {title, url, source, publishedAt} = article;
     const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
 
@@ -14,9 +15,9 @@ const Item = ({article}) => {
         <TouchableHighlight
             style={styles.container}
             underlayColor={"transparent"}
-            onPress={() =>     navigationRef.navigate('Article', {
-                title: title,
+            onPress={() =>      navigation.navigate('Article', {
                 article: article,
+                title: title,
               }) }>
             <View style={styles.wrapper}>
 
