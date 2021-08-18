@@ -2,6 +2,15 @@ import axios from 'axios';
 import {API_URL_, APP_ENV_} from '../config/config';
 
 
+export const setCountry = (country) => {
+  console.log("setting country", country)
+  return {
+    type: 'SET_COUNTRY',
+    country: country,
+  
+  };
+};
+
 export const formUpdate = (prop, value) => {
     return {
       type: 'FORM_UPDATE',
@@ -38,13 +47,16 @@ export const formUpdate = (prop, value) => {
     };
   };
 
-  export const getHeadlines = ({ country}) => {
-    return async (dispatch) => {
+  export const getNewsHeadlines = ({c}) => {
  
-      axios(`${API_URL_}/auth/getHeadlines`, {
+    return (dispatch) => {
+      dispatch({type: 'RETRIEVING_HEADLINES'});
+      return new Promise((resolve, reject) => {
+     console.log("country 3 is" , c)
+      axios(`${API_URL_}/getHeadlines`, {
         method: 'POST',
         data: JSON.stringify({
-            _COUNTRY: country,
+            country: c,
           }),
         headers: {
           'Content-Type': 'application/json',
@@ -52,12 +64,16 @@ export const formUpdate = (prop, value) => {
         },
       })
         .then((response) => {
+          
           dispatch({type: 'GET_HEADLINES', payload: response});
+          resolve();
         })
         .catch((error) => {
           console.log('error', error);
-          dispatch({type: 'INTERNAL_ERROR', payload: error});
+          reject();
+          dispatch({type: 'HEADLINES_ERROR', payload: error});
         });
+      });
     };
   };
 
@@ -66,7 +82,7 @@ export const formUpdate = (prop, value) => {
     password,
 
   }) => {
-    return async (dispatch) => {
+    return  (dispatch) => {
 
       axios(`${API_URL_}/auth/login`, {
         method: 'POST',

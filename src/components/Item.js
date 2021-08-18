@@ -2,22 +2,26 @@ import React from 'react';
 import {Text, View, TouchableHighlight, Image} from 'react-native';
 import moment from "moment";
 
-import styles from "../styles/style"
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
+
+import styles from "../styles"
 
 const Item = ({article}) => {
     const {title, url, source, publishedAt} = article;
+    const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
+
     return (
         <TouchableHighlight
             style={styles.container}
             underlayColor={"transparent"}
-            onPress={() =>    this.props.navigation.navigate('OTP', {
-                article: article,
+            onPress={() =>     navigationRef.navigate('Article', {
                 title: title,
-              })}>
-            <View style={[styles.wrapper]}>
+                article: article,
+              }) }>
+            <View style={styles.wrapper}>
 
                 {
-                    article.urlToImage && <Image source={{uri: article.urlToImage}} style={styles.img}/>
+                    article.urlToImage == "" ? null : <Image source={{uri: article.urlToImage}} style={styles.img}/>
                 }
 
                 <View style={[styles.info]}>

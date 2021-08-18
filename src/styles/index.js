@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { Dimensions, Platform } from 'react-native';
 import { moderateScale as normalize } from 'react-native-size-matters';
 
@@ -45,17 +46,66 @@ const tabIconStyle = { size: 21, color: tabColor, selected: selectedTabColor }
 const navTitleStyle = { fontSize: fontSize.regular + 1 , fontFamily: fontFamily.semibold, color: color.black, letterSpacing: 0.4 }
 const navigationBarStyle = { backgroundColor: color.black, borderBottomWidth:0 }
 
-export {
-    color,
-    fontSize,
-    fontFamily,
-    padding,
-    navbarHeight,
-    windowWidth,
-    windowHeight,
-    tabIconStyle,
-    navTitleStyle,
-    navigationBarStyle,
-    imageOptions,
-    normalize
-}
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        marginVertical: 5,
+        marginHorizontal: 10
+    },
+
+    wrapper:{
+        padding: padding,
+        flexDirection: "row",
+        backgroundColor:"white"
+    },
+
+    img:{
+        height: 75,
+        width: 75,
+        backgroundColor: color.light_grey,
+        marginRight: padding * 1.5
+    },
+
+    info:{
+        flex:1
+    },
+    listcontainer: {
+        flex: 1,
+       
+      },
+    picker: {
+        alignSelf: 'stretch',
+        borderBottomColor: '#000',
+        borderBottomWidth: 1,
+        color: '#000',
+        backgroundColor: '#fff',
+        padding: 15
+      },
+    title:{
+        fontSize: fontSize.regular,
+        fontFamily: fontFamily.bold,
+        color: color.black,
+    },
+
+    bottom:{
+        flexDirection: "row",
+        flex:1,
+        marginTop:padding * 2,
+    },
+
+    source:{
+        fontSize: fontSize.small,
+        fontFamily: fontFamily.bold,
+        color: color.main
+    },
+
+    date:{
+        fontSize: fontSize.small,
+        fontFamily: fontFamily.bold,
+        color: color.grey,
+        marginLeft: padding
+    },
+});
+
+
+export default styles;

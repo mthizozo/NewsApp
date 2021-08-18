@@ -1,22 +1,25 @@
 
 import React from 'react';
-import {FlatList, RefreshControl, ActivityIndicator} from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
-import {connect} from 'react-redux';
+import { WebView } from 'react-native-webview';
 
-import * as actions from "../actions"
-const { getNewsHeadlines } = home;
+export default function Article(props) {
+    const {navigation} = props;
+    const article = navigation.getParam("article");
 
-class Article extends React.Component {
+    //==================================================================================================
 
+    return (
+        <WebView source={{ uri: article.url }}
+                 startInLoadingState={true}
+                 onError={() => alert("Failed to load article.")}
+                 renderLoading={() => <ActivityIndicator style={{paddingVertical: 8}}/>}/>
+    );
+};
 
-}
-
-
-const mapStateToProps = (state) => {
+Article.navigationOptions = ({navigation}) => {
     return {
-      userid: state.userid,
-    };
-  };
-  
-  export default connect(mapStateToProps, actions)(Article);
+        title: `${navigation.getParam('title')}`
+    }
+};

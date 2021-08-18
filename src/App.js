@@ -17,18 +17,19 @@ import React , {Component} from 'react';
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import * as actions from './actions';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Provider} from 'react-redux';
 import 'react-native-gesture-handler';
-import store from './redux/store';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import reducer from './redux/mainReducer'; //Import the root reducer
+
+const enhancer = compose(applyMiddleware(thunk));
+
+const store = createStore(reducer, enhancer);
+
 const Stack = createNativeStackNavigator();
 
 import Home from './Views/Home'
@@ -66,16 +67,7 @@ export default class App extends Component  {
           name='Home'
           component={Home}
         />
-        <Stack.Screen
-          name='Login'
-          component={Login}
-          options={{headerTitle: (props) => <LogoTitle {...props} />, headerLeft: null}}
-        />
-        <Stack.Screen
-          name='Register'
-          component={Register}
-          options={{headerTitle: (props) => <LogoTitle {...props} />, headerLeft: null}}
-        />
+ 
         <Stack.Screen
           name='Article'
           component={Article}

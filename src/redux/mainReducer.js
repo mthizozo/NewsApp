@@ -1,4 +1,4 @@
-let initialState = { isFetching: true, articles:[], hasError:false, errorMsg: "", userid: "", email: "", password: "" };
+let initialState = { isFetching: true, articles:[], hasError:false, errorMsg: "", userid: "", email: "", password: "", country: "" };
 
 
 export default (state = initialState, action) => {
@@ -8,10 +8,16 @@ export default (state = initialState, action) => {
           ...state,
           initialState,
         };
-      case 'START_LOADING': {
+      case 'RETRIEVING_HEADLINES': {
         return {
           ...state,
-          loading: true,
+          isFetching: true,
+        };
+      }
+      case 'SET_COUNTRY': {
+        return {
+          ...state,
+          country: action.country,
         };
       }
       case 'LOGIN':
@@ -25,7 +31,7 @@ export default (state = initialState, action) => {
           loginRes: action.payload,
  
         };
- 
+      
       case 'FORM_UPDATE':
         return {
           ...state,
@@ -57,14 +63,24 @@ export default (state = initialState, action) => {
           result: action.payload.data.RESULT,
           data: action.payload.data,
         };
-      case 'GET_HEADLINES':
-        return {
-          ...state,
-          data: action.payload.data,
-        };
+
+
+      case  'GET_HEADLINES':{
+        console.log("getting headlines ...")
+          let  articles  = action.payload.data.articles;
+         
+          return {...state, isFetching:false, articles, hasError:false};
+      }
+
+      case 'HEADLINES_ERROR':{
+          const error = action.error;
+
+          return {...state, isFetching:false, hasError:true, errorMsg:error};
+      }
       case 'REGISTER_FAIL': {
         return {
           ...state,
+
           data: action.payload.data,
         };
       }
